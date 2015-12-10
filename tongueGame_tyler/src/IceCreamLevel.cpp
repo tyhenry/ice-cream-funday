@@ -74,10 +74,32 @@ void IceCream::update(){
     //cout << imageIndex << endl;
     
     //update collider positions
-    icLevels[0].setX(pos.x + lvlX[0]);
-    icLevels[1].setX(pos.x + lvlX[1]);
-    icLevels[2].setX(pos.x + lvlX[2]);
-    icLevels[3].setX(pos.x + lvlX[3]);
+    if (lickState <1){
+        icLevels[0].setX(pos.x + lvlX[0]);
+        icLevels[1].setX(pos.x + lvlX[1]);
+        icLevels[2].setX(pos.x + lvlX[2]);
+        icLevels[3].setX(pos.x + lvlX[3]);
+    } else if (lickState >=1 && lickState <3 ){
+        icLevels[0].setX(-1000);
+        icLevels[1].setX(pos.x + lvlX[1]);
+        icLevels[2].setX(pos.x + lvlX[2]);
+        icLevels[3].setX(pos.x + lvlX[3]);
+    } else if (lickState >= 3 && lickState < 6){
+        icLevels[0].setX(-1000);
+        icLevels[1].setX(-1000);
+        icLevels[2].setX(pos.x + lvlX[2]);
+        icLevels[3].setX(pos.x + lvlX[3]);
+    } else if (lickState >=6 && lickState < 10){
+        icLevels[0].setX(-1000);
+        icLevels[1].setX(-1000);
+        icLevels[2].setX(-1000);
+        icLevels[3].setX(pos.x + lvlX[3]);
+    } else if (lickState >= 10){
+        icLevels[0].setX(-1000);
+        icLevels[1].setX(-1000);
+        icLevels[2].setX(-1000);
+        icLevels[3].setX(-1000);
+    }
 }
 
 void IceCream::move(){
