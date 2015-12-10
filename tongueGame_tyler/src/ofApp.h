@@ -50,6 +50,8 @@ public:
     ofxCvContourFinder contourFinder;
     
     int icLevelNum = 0;
+    
+    bool drawKinect = false;
 
     
 };

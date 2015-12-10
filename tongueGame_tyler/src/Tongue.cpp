@@ -22,14 +22,24 @@ void Tongue::update(float _posX, float _posY){
     //CHECK FOR LICKING
     // licking is any movement from low->high while not moving much left-right
     
-    isLicking = false;
-    
     if (pos.y < prevPos.y){
-        if ((pos.x > prevPos.x - 20) && (pos.x < prevPos.x + 20)){
+        if ((pos.x > prevPos.x - 10) && (pos.x < prevPos.x + 10)){
             isLicking = true;
+            
+        } else {
+            isLicking = false;
+        }
+        isMovingDown = false;
+        
+    } else {
+        isLicking = false;
+        
+        if (pos.y > prevPos.y){
+            isMovingDown = true;
         }
     }
     
+    prevPos = pos;
     
 }
 

@@ -12,11 +12,20 @@
 
 
 IceCream::IceCream(){
+    
+    //load animations
     string index;
     for(int i =0; i< MAXIMAGES; i++){
         index = ofToString(i + 10);
         lickAnimation[i].loadImage("iceCream/iceCream000" + index + ".png");
+        meltAnimation[i].loadImage("iceCreamMelt/iceCreamMelt000" + index + "_bottom.png");
     }
+    
+    //load cone
+    //coneFull.loadImage("iceCreamCone.png");
+    coneFront.loadImage("iceCreamConeFront.png");
+    
+    
     scaleFactor = 0.5;
 
     height = lickAnimation[0].getHeight() * scaleFactor;
@@ -44,6 +53,8 @@ IceCream::IceCream(){
 
 void IceCream::draw(){
     lickAnimation[imageIndex].draw(pos.x, pos.y, width, height);
+    coneFront.draw(pos.x, pos.y, width, height);
+    meltAnimation[imageIndex].draw(pos.x, pos.y, width, height);
     
     ofPushStyle();
         ofSetColor(255,0,0);
@@ -74,5 +85,18 @@ void IceCream::move(){
     cPos.x = pos.x + width*0.5;
     if (pos.x > ofGetWidth() - width || pos.x < 0){
         moveIncrement *= -1;
+    }
+}
+
+bool IceCream::collision(ofVec2f checkPos){
+    for (int i=0; i<4; i++){
+        //check for collision
+        if ((checkPos.x > icLevels[i].getMinX()) &&
+            (checkPos.x < icLevels[i].getMaxX()) &&
+            (checkPos.y > icLevels[i].getMinY()) &&
+            (checkPos.y < icLevels[i].getMaxY())){
+            
+                return true;            
+            }
     }
 }

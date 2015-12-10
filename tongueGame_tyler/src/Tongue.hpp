@@ -21,6 +21,7 @@ public:
     ofVec2f prevPos; //last frame
     
     bool isLicking = false;
+    bool isMovingDown = false;
     
     
 };

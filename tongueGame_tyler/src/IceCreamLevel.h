@@ -18,9 +18,12 @@ public:
     void update();
     void move();
     void sprinkles();
+    bool collision(ofVec2f checkPos);
+    
     int imageIndex;
     
     ofImage lickAnimation[MAXIMAGES];
+    ofImage meltAnimation[MAXIMAGES];
     ofImage coneFront;
     ofImage coneFull;
 
@@ -41,8 +44,10 @@ public:
     
     //string
     
-    //ice cream parts, 0-3
+    //ice cream colliders, 0-3
     ofRectangle icLevels[4];
-    int lvlX[4];
+    int lvlX[4]; // x offset
+    
+    int lickState = 0; // 0-9 (# of licks)
     
 };
